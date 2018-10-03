@@ -10,6 +10,8 @@
 /build
 
 # misc
+jalvaro.github.io.iml
+/.idea
 .DS_Store
 .env.local
 .env.development.local
