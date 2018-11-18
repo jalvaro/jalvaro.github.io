@@ -22,14 +22,6 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
                         drawingModes: [
                             window.google.maps.drawing.OverlayType.RECTANGLE
                         ],
-                    },
-                    circleOptions: {
-                        fillColor: `#ffff00`,
-                        fillOpacity: 1,
-                        strokeWeight: 5,
-                        clickable: false,
-                        editable: true,
-                        zIndex: 1
                     }
                 }}
             />
