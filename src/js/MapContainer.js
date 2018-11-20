@@ -1,17 +1,23 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 import MyMapComponent from "./MyMapComponent";
 
 export default class MapContainer extends Component {
-    state = {
-        markers: [
-            /*{
-                position: {
-                    lat: 41.860768,
-                    lng: -3.388736
-                }
-            }*/
-        ]
+    static propTypes = {
+        antennas: PropTypes.array
     };
+
+    state = {
+        markers: []
+    };
+
+    componentDidMount() {
+        this.setState({ markers: this.props.antennas });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ markers: nextProps.antennas });
+    }
 
     render() {
         return (
