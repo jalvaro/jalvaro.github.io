@@ -50,11 +50,17 @@ const getAntennas = area => {
         .then(mapToAntennas);
 };
 
-const mapToAntennas = response => response.features.map(x => ({
-    position: {
-        lat: x.geometry.coordinates[1],
-        lng: x.geometry.coordinates[0]
+const mapToAntennas = response => {
+    if (typeof response === 'undefined' || typeof response.features === 'undefined') {
+        return [];
     }
-}));
+
+    return response.features.map(x => ({
+        position: {
+            lat: x.geometry.coordinates[1],
+            lng: x.geometry.coordinates[0]
+        }
+    }));
+};
 
 export default MobileAntennas;
