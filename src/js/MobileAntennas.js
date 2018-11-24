@@ -3,25 +3,23 @@ import MapContainer from "./MapContainer";
 import 'whatwg-fetch'
 
 
-const url = "https://infoantenas.herokuapp.com/antennas";
-
 class MobileAntennas extends React.Component {
     state = {
         selectedArea: {
             pointA: {
-                lat: -3.3525553686015,
-                lng: 41.838103675076
+                lat: 41.838103675076,
+                lng: -3.3525553686015
             },
             pointB: {
-                lat: -3.3428779584757,
-                lng: 41.844144009778
+                lat: 41.844144009778,
+                lng: -3.3428779584757
             }
         },
         antennas: []
     };
 
     componentDidMount() {
-        getAntennas()
+        getAntennas(this.state.selectedArea)
             .then(antennas => this.setState({antennas: antennas}));
     }
 
@@ -35,8 +33,19 @@ class MobileAntennas extends React.Component {
     }
 }
 
-const getAntennas = () => {
-    return window.fetch(url)
+const getAntennas = area => {
+    // localhost:5000/antennas?lat1=41.838103675076&lng1=-3.3525553686015&lat2=41.844144009778&lng2=-3.3428779584757
+    const url = new URL("https://infoantenas.herokuapp.com/antennas");
+    const params = {
+        lat1: area.pointA.lat,
+        lng1: area.pointA.lng,
+        lat2: area.pointB.lat,
+        lng2: area.pointB.lng,
+    };
+
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+    return fetch(url)
         .then(response => response.json())
         .then(mapToAntennas);
 };
