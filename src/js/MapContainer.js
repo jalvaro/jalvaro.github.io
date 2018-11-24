@@ -12,11 +12,14 @@ export default class MapContainer extends Component {
     };
 
     componentDidMount() {
-        this.setState({ markers: this.props.antennas });
+        this.setState({markers: this.props.antennas});
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({ markers: nextProps.antennas });
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.antennas !== prevProps.antennas) {
+            this.setState({markers: this.props.antennas});
+        }
     }
 
     render() {
