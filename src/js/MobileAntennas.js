@@ -34,7 +34,6 @@ class MobileAntennas extends React.Component {
 }
 
 const getAntennas = area => {
-    // localhost:5000/antennas?lat1=41.838103675076&lng1=-3.3525553686015&lat2=41.844144009778&lng2=-3.3428779584757
     const url = new URL("https://infoantenas.herokuapp.com/antennas");
     const params = {
         lat1: area.pointA.lat,

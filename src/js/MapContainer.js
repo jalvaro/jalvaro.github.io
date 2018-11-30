@@ -7,21 +7,6 @@ export default class MapContainer extends Component {
         antennas: PropTypes.array
     };
 
-    state = {
-        markers: []
-    };
-
-    componentDidMount() {
-        this.setState({markers: this.props.antennas});
-    }
-
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (this.props.antennas !== prevProps.antennas) {
-            this.setState({markers: this.props.antennas});
-        }
-    }
-
     render() {
         return (
             <MyMapComponent
@@ -29,7 +14,7 @@ export default class MapContainer extends Component {
                 loadingElement={<div style={{height: `100%`}}/>}
                 containerElement={<div style={{height: "100%"}}/>}
                 mapElement={<div style={{height: "100%"}}/>}
-                markers={this.state.markers}
+                markers={this.props.antennas}
             />
         );
     }
