@@ -4,8 +4,7 @@ import {InfoWindow, Marker} from "react-google-maps";
 
 class InfoMarker extends React.Component {
     static propTypes = {
-        antenna: PropTypes.object,
-        index: PropTypes.object
+        antenna: PropTypes.object
     };
 
     constructor(props) {
@@ -18,25 +17,24 @@ class InfoMarker extends React.Component {
 
     handleToggleOpen = () => this.setState({isOpen: !this.state.isOpen});
 
+    getDescription = properties => Object.keys(properties)
+        .map(x => <div><strong>{x}:</strong> {properties[x]} </div>);
+
     render() {
         return (
             <Marker
-                key={this.props.index}
                 position={this.props.antenna.position}
                 onClick={this.handleToggleOpen}
             >
                 {
                     this.state.isOpen &&
                     <InfoWindow onCloseClick={this.handleToggleOpen}>
-                        <div>{getDescription(this.props.antenna.properties)}</div>
+                        <div>{this.getDescription(this.props.antenna.properties)}</div>
                     </InfoWindow>
                 }
             </Marker>
         )
     }
 }
-
-const getDescription = properties => Object.keys(properties)
-    .map(x => <div><strong>{x}:</strong> {properties[x]} </div>);
 
 export {InfoMarker};

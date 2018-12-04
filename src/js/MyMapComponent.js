@@ -11,8 +11,8 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             {
                 props.markers.map((antenna, index) => (
                     <InfoMarker
+                        key={index}
                         antenna={antenna}
-                        index={index}
                     />
                 ))
             }
