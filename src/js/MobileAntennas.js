@@ -58,7 +58,8 @@ const mapToAntennas = response => {
         position: {
             lat: x.geometry.coordinates[1],
             lng: x.geometry.coordinates[0]
-        }
+        },
+        properties: x.properties,
     }));
 };
 
