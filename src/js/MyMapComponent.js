@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {GoogleMap, InfoWindow, Marker, withGoogleMap, withScriptjs} from "react-google-maps"
+import React from 'react';
+import {GoogleMap, withGoogleMap, withScriptjs} from "react-google-maps"
 import DrawingManager from "react-google-maps/lib/components/drawing/DrawingManager";
-import PropTypes from "prop-types";
+import {InfoMarker} from "./InfoMarker";
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     <div>
@@ -10,7 +10,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             defaultCenter={{lat: 41.860768, lng: -3.388736}}>
             {
                 props.markers.map((antenna, index) => (
-                    <InfoWindowMap
+                    <InfoMarker
                         antenna={antenna}
                         index={index}
                     />
@@ -32,42 +32,5 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
         </GoogleMap>
     </div>
 ));
-
-const getDescription = properties => Object.keys(properties)
-    .map(x => <div><strong>{x}:</strong> {properties[x]} </div>);
-
-class InfoWindowMap extends Component {
-    static propTypes = {
-        antenna: PropTypes.array,
-        index: PropTypes.object
-    };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isOpen: false
-        }
-    }
-
-    handleToggleOpen = () => this.setState({isOpen: !this.state.isOpen});
-
-    render() {
-        return (
-            <Marker
-                key={this.props.index}
-                position={this.props.antenna.position}
-                onClick={this.handleToggleOpen}
-            >
-                {
-                    this.state.isOpen &&
-                    <InfoWindow onCloseClick={this.handleToggleOpen}>
-                        <div>{getDescription(this.props.antenna.properties)}</div>
-                    </InfoWindow>
-                }
-            </Marker>
-        )
-    }
-}
 
 export default MyMapComponent;
