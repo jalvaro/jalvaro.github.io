@@ -57,7 +57,11 @@ class DescriptionArea extends Component {
     handleToggleOpen = () => this.setState({isOpen: !this.state.isOpen});
 
     getDescription = properties => Object.keys(properties)
-        .map((description, index) => <div key={index}><strong>{description}:</strong> {properties[descr]} </div>);
+        .map((description, index) => (
+            <div key={index}>
+                <strong>{description}:</strong> {properties[description]}
+            </div>
+        ));
 
     render() {
         return (
