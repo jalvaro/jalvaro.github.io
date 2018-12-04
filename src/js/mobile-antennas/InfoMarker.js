@@ -57,12 +57,14 @@ class DescriptionArea extends Component {
     handleToggleOpen = () => this.setState({isOpen: !this.state.isOpen});
 
     getDescription = properties => Object.keys(properties)
-        .map((descr, index) => <div key={index}><strong>{descr}:</strong> {properties[descr]} </div>);
+        .map((description, index) => <div key={index}><strong>{description}:</strong> {properties[descr]} </div>);
 
     render() {
         return (
             <div>
-                <div onClick={this.handleToggleOpen}><strong>{(this.props.index+1) + ". " + this.props.antenna.properties["Código"]}</strong></div>
+                <div onClick={this.handleToggleOpen}>
+                    <strong>{(this.props.index + 1) + ". " + this.props.antenna.properties["Código"]}</strong>
+                </div>
                 {this.state.isOpen &&
                 <div style={{paddingLeft: "10px"}}>
                     {this.getDescription(this.props.antenna.properties)}
