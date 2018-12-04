@@ -18,7 +18,7 @@ class InfoMarker extends React.Component {
     handleToggleOpen = () => this.setState({isOpen: !this.state.isOpen});
 
     getDescription = properties => Object.keys(properties)
-        .map(x => <div><strong>{x}:</strong> {properties[x]} </div>);
+        .map((descr, index) => <div key={index}><strong>{descr}:</strong> {properties[descr]} </div>);
 
     render() {
         return (
