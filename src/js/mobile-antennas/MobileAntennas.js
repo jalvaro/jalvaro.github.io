@@ -15,19 +15,19 @@ class MobileAntennas extends React.Component {
                 lng: -3.2428779584757
             }
         },
-        antennas: []
+        markers: []
     };
 
     componentDidMount() {
         getAntennas(this.state.selectedArea)
-            .then(antennas => this.setState({antennas: antennas}));
+            .then(markers => this.setState({markers: markers}));
     }
 
     render() {
         return (
             <div style={{height: "700px"}}>
                 <h2>Mobile Antennas</h2>
-                <MapContainer antennas={this.state.antennas}/>
+                <MapContainer markers={this.state.markers}/>
             </div>
         );
     }

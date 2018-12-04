@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types'
 import MyMapComponent from "./MyMapComponent";
 
 export default class MapContainer extends Component {
-    static propTypes = {
-        antennas: PropTypes.array
-    };
-
     render() {
         return (
             <MyMapComponent
@@ -14,7 +9,7 @@ export default class MapContainer extends Component {
                 loadingElement={<div style={{height: `100%`}}/>}
                 containerElement={<div style={{height: "100%"}}/>}
                 mapElement={<div style={{height: "100%"}}/>}
-                markers={this.props.antennas}
+                markers={this.props.markers}
             />
         );
     }

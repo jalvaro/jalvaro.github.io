@@ -13,21 +13,36 @@ const getAntennas = area => {
 
     return fetch(url)
         .then(response => response.json())
-        .then(mapToAntennas);
+        .then(mapToMarkers);
 };
 
-const mapToAntennas = response => {
+const mapToMarkers = response => {
     if (typeof response === 'undefined' || typeof response.features === 'undefined') {
         return [];
     }
 
-    return response.features.map(x => ({
+    return response.features.reduce(groupByCoordinates, {});
+};
+
+const groupByCoordinates = (acc, cur) => {
+    const key = JSON.stringify(cur.geometry.coordinates);
+
+    if (acc[key]) {
+        acc[key].antennas = acc[key].antennas.concat(cur);
+    } else {
+        acc[key] = getMarker(cur);
+    }
+
+    return acc;
+};
+
+const getMarker = x => (
+    {
         position: {
             lat: x.geometry.coordinates[1],
             lng: x.geometry.coordinates[0]
         },
-        properties: x.properties,
-    }));
-};
+        antennas: [x]
+    });
 
 export {getAntennas};

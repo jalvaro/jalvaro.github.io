@@ -9,10 +9,10 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             defaultZoom={13}
             defaultCenter={{lat: 41.860768, lng: -3.388736}}>
             {
-                props.markers.map((antenna, index) => (
+                Object.values(props.markers).map((marker, index) => (
                     <InfoMarker
                         key={index}
-                        antenna={antenna}
+                        marker={marker}
                     />
                 ))
             }
