@@ -3,10 +3,10 @@ import 'whatwg-fetch'
 const getAntennas = area => {
     const url = new URL("https://infoantenas.herokuapp.com/antennas");
     const params = {
-        lat1: area.pointA.lat,
-        lng1: area.pointA.lng,
-        lat2: area.pointB.lat,
-        lng2: area.pointB.lng,
+        lat1: area.SWPoint.lat,
+        lng1: area.SWPoint.lng,
+        lat2: area.NEPoint.lat,
+        lng2: area.NEPoint.lng,
     };
 
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));

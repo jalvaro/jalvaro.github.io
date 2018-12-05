@@ -10,6 +10,7 @@ export default class MapContainer extends Component {
                 containerElement={<div style={{height: "100%"}}/>}
                 mapElement={<div style={{height: "100%"}}/>}
                 markers={this.props.markers}
+                updateArea={this.props.updateArea}
             />
         );
     }
